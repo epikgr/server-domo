@@ -6,74 +6,42 @@
  @description: Page d'accueil
 -->
 
+{loop="places"}
 
-{loop="array"}
-<div class="btn-toolbar">
-  <div class="btn-group">
-    <a class="btn btn-success" href="action.php?engine=id-{$key}&amp;action=CHANGE_STATE&amp;code={$key}&amp;state=on" >{$key}</a>
-    <a class="btn btn-danger"  href="action.php?engine=id-{$key}&amp;action=CHANGE_STATE&amp;code={$key}&amp;state=off">{$key}</a>
-  </div>
+<div class="panel panel-default col-xs-12">
+    <div class="panel-body">
+        <h5 class="text-center">Toutes les lumières</h5>
+        <div class="btn-group col-xs-12">
+            <a class="btn btn-success col-xs-6" onclick="send('action.php?engine=id-7&amp;action=CHANGE_STATE&amp;code=-1&amp;state=on')">ON</a>
+            <a class="btn btn-danger col-xs-6" onclick="send('action.php?engine=id-7&amp;action=CHANGE_STATE&amp;code=-1&amp;state=off')">OFF</a>
+        </div>
+    </div>
 </div>
-{/loop}
-
-{if="isset($myUser)"}
-	
-<ul class="nav nav-tabs" id="myTab">
-{$first=0}
-{loop="places"}
-<li class="{if="$first==0"}{$first=1}active{/if}"><a href="#{$key}">{$value['name']}</a></li>
-{/loop}
-
-
-
-
-</ul>
- 
-<div class="tab-content">
-{$first=0}
-{loop="places"}
-{$currentPlace=$key}
-<div class="tab-pane {if="$first==0"}{$first=1}active{/if}" id="{$key}">
-
-      <div class="row">
-
 
 {loop="engines"}
 
-	{if="$value2['place']==$currentPlace"}
-	
-<div class="span3">
-          <h5>{$value2['name']}</h5>
-		  <a class="thumbnail" href="#"><img src="../../{$value['picture']}"></a>
-		   <br/>
-		  <p>{$value2['description']}
-		  	<ul>
-		  		<li>Code radio : <code>{$value2['code']}</code></li>
-		  		<li>Id : <code>{$key2}</code></li>
-		  		<li>Emplacement : <code>{$places[$value2['place']]['name']}</code></li>
-		  	</ul>
-		  </p>
-		  	 <div class="btn-toolbar">
-				<div class="btn-group">
-				<a class="btn {if="$value2['state']=='on'"}btn-success{/if}" href="action.php?engine={$key}&amp;action=CHANGE_STATE&amp;code={$value2['code']}&amp;state=on"><i class="icon-thumbs-up {if="$value2['state']=='on'"}icon-white{/if}"></i></a>
-				<a class="btn {if="$value2['state']=='off'"}btn-danger{/if}" href="action.php?engine={$key}&amp;action=CHANGE_STATE&amp;code={$value2['code']}&amp;state=off"><i class="icon-thumbs-down {if="$value2['state']=='off'"}icon-white{/if}"></i></a>
-				</div>
-			</div>
+{if="$value2['code'] != -1"}
+<div class="panel panel-default col-xs-6">
+    <div class="panel-body">
+        <h5 class="text-center">{$value2['name']}</h5>
+        <div class="btn-group col-xs-12">
+            <a class="btn btn-success col-xs-6"
+               onclick="send('action.php?engine={$key}&amp;action=CHANGE_STATE&amp;code={$value2['code']}&amp;state=on')">ON</a>
+            <a class="btn btn-danger col-xs-6"
+               onclick="send('action.php?engine={$key}&amp;action=CHANGE_STATE&amp;code={$value2['code']}&amp;state=off')">OFF</a>
         </div>
-        {/if}
+    </div>
+</div>
+{/if}
 {/loop}
 
-      </div>
-
-
-
-</div>
 
 {/loop}
 
-</div>
+<script>
 
-	  {else}
-		Vous devez vous connecter pour controler cet espace
-	  {/if}
-{include="footer"}
+    function send( sURL ) {
+        $.get( sURL );
+    }
+
+</script>

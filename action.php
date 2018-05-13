@@ -87,12 +87,6 @@ case 'CHANGE_STATE':
 	$db['engines'][$_['engine']] =  $engine;
 
 	Functions::store($db);
-	
-	if(!isset($_['provider'])){
-		header('location: index.php');
-	}else{
-		echo 'A vos ordres';
-	}
 break;
 
 
@@ -151,7 +145,7 @@ break;
 				
 	break;
 	default:
-		echo 'Aucune action correcte n\'est spécifiée';
+		echo 'Aucune action correcte n\'est spï¿½cifiï¿½e';
 	break;
 
 }
