@@ -87,6 +87,10 @@ case 'CHANGE_STATE':
 	$db['engines'][$_['engine']] =  $engine;
 
 	Functions::store($db);
+case 'STORE':
+	system('./radioEmission '.PIN.' '.SENDER.' '.$_GET['code'] . ' on');
+	sleep(16);
+	system('./radioEmission '.PIN.' '.SENDER.' '.$_GET['code'] . ' off');
 break;
 
 

@@ -22,7 +22,7 @@
 
 {loop="engines"}
 
-{if="$value2['code'] != -1"}
+{if="$value2['code'] != -1 && $value2['code'] != 8"}
 <div class="panel panel-default col-xs-6">
     <div class="panel-body">
         <h5 class="text-center">{$value2['name']}</h5>
@@ -36,6 +36,15 @@
 </div>
 {/if}
 {/loop}
+
+<div class="panel panel-default col-xs-12">
+    <div class="panel-body">
+        <h5 class="text-center">Store chambre</h5>
+        <div class="btn-group col-xs-12">
+            <a class="btn btn-success col-xs-12" onclick="send('action.php?engine=id-8&amp;action=STORE&amp;code=8&amp;state=on')">ON</a>
+        </div>
+    </div>
+</div>
 
 
 {/loop}

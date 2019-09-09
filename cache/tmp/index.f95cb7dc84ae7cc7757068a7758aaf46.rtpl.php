@@ -22,7 +22,7 @@
 
 <?php $counter2=-1; if( isset($engines) && is_array($engines) && sizeof($engines) ) foreach( $engines as $key2 => $value2 ){ $counter2++; ?>
 
-<?php if( $value2['code'] != -1 ){ ?>
+<?php if( $value2['code'] != -1 && $value2['code'] != 8 ){ ?>
 <div class="panel panel-default col-xs-6">
     <div class="panel-body">
         <h5 class="text-center"><?php echo $value2['name'];?></h5>
@@ -36,6 +36,15 @@
 </div>
 <?php } ?>
 <?php } ?>
+
+<div class="panel panel-default col-xs-12">
+    <div class="panel-body">
+        <h5 class="text-center">Store chambre</h5>
+        <div class="btn-group col-xs-12">
+            <a class="btn btn-success col-xs-12" onclick="send('action.php?engine=id-8&amp;action=STORE&amp;code=8&amp;state=on')">ON</a>
+        </div>
+    </div>
+</div>
 
 
 <?php } ?>
