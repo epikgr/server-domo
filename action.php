@@ -91,7 +91,7 @@ break;
 
 case 'STORE':
 	system('./radioEmission '.PIN.' '.SENDER.' '.$_GET['code'] . ' on');
-	sleep(16);
+	sleep(18);
 	system('./radioEmission '.PIN.' '.SENDER.' '.$_GET['code'] . ' off');
 break;
 
